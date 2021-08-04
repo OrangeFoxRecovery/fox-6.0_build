@@ -524,6 +524,19 @@ else
 MD5SUM:=md5sum
 endif
 
+# Darth9
+# OrangeFox post script
+ FOX_CURRENT_DEV_STR := $(shell git -C bootable/recovery log -1 --format='%ad (%h)' --date=short)
+ifdef NOT_ORANGEFOX
+  FOX_VENDOR :=
+  BASH :=
+else
+  export FOX_VENDOR=vendor/recovery/OrangeFox.sh
+  export BASH=bash
+  export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
+endif
+# Darth9
+
 # In-place sed is done different in linux than OS X
 ifeq ($(HOST_OS),darwin)
 GSED:=$(shell which gsed)
